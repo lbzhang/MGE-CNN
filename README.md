@@ -26,13 +26,14 @@ If you use this code, please cite our paper:
 
 
 ## Train
-ln -s "Folder of CUB data" CUB-200-2011 \
-python pretrain.py --config configs/cub_resnet50.yml 
+```ln -s "Folder of CUB data" CUB-200-2011 \```
+
+```python pretrain.py --config configs/cub_resnet50.yml``` 
 
 ## Inference
 Pretrained model: [link](https://drive.google.com/file/d/1JS8tI0gnBIW-tT97DjL1Rc2kJmorrhM2/view?usp=sharing)
 
-python test.py --config configs/cub_resnet50.yml --model epoch_100.pth
+```python test.py --config configs/cub_resnet50.yml --model epoch_100.pth```
 
 Accuracy: 88.78 %
 
