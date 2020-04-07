@@ -92,6 +92,7 @@ parser.add_argument('--random', action='store_true', help='whether use random no
 parser.add_argument('-e', '--evaluate', dest='evaluate', action='store_true', help='evaluate model on validation set')
 parser.add_argument('--seed', default=0, type=int, help='seeding for all random operation')
 parser.add_argument('--config', default='configs/cub_224_baseline.yml', type=str, help='config files')
+parser.add_argument('--box_thred', default=0.2, type=float, help='threshod to crop a bounding box')
 
 # train
 parser.add_argument('--momentum', default=0.9, type=float, metavar='M', help='momentum')
