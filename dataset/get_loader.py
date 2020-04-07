@@ -3,7 +3,6 @@ import imp
 import torch.utils.data
 import torchvision.transforms as transforms
 
-import pdb
 
 # imp.load_model()
 normalize = transforms.Normalize(mean=[0.5, 0.5, 0.5],
@@ -39,32 +38,12 @@ test_transform_v2 = transforms.Compose([
                      normalize
                      ])
 
-test_transform_v3 = transforms.Compose([
-                     transforms.Resize(512),
-                     transforms.TenCrop(448),
-                     lambda crops: torch.stack([transforms.ToTensor()(crop) for crop in crops]),
-                     lambda crops: torch.stack([normalize(crop) for crop in crops])
-                     ])
-
-test_transform_v4 = transforms.Compose([
-                     transforms.Resize(512),
-                     transforms.FiveCrop(448),
-                     lambda crops: torch.stack([transforms.ToTensor()(crop) for crop in crops]),
-                     lambda crops: torch.stack([normalize(crop) for crop in crops])
-                     ])
 
 # ----------------------
 def get_loader(args, train=True, shuffle=False, batch_size=None):
 
     data_transform = train_transform_v2 if train else test_transform
 
-    if args.tta in ['ten_crop', 'tencrop']:
-        data_transform = test_transform_v3
-
-    if args.tta in ['five_crop', 'fivecrop']:
-        data_transform = test_transform_v4
-
-    # data_transform = test_transform_v2
 
     src_file = ''
     if args.data.lower() in ['stanford-cars', 'car', 'cars']:

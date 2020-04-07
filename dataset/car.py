@@ -8,7 +8,6 @@ from torch.utils.data.sampler import WeightedRandomSampler
 import numpy as np
 from scipy.io import loadmat
 
-import pdb
 
 def pil_loader(path):
     with open(path, 'rb') as f:

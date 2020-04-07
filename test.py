@@ -12,7 +12,6 @@ from utils import RunningMean, accuracy, RunningAcc
 from models import get_model
 from dataset import get_loader
 
-import pdb
 
 def main(opt):
     # model

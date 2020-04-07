@@ -9,7 +9,6 @@ import cv2
 
 import utils
 
-import pdb
 
 def show_cam_on_image(img, mask, tgt_file):
     heatmap = cv2.applyColorMap(np.uint8(255*mask), cv2.COLORMAP_JET)
@@ -32,8 +31,6 @@ def validate(val_loader, model, cfg=None):
     model = model.eval()
 
     with torch.no_grad():
-        # pbar = tqdm(val_loader, dynamic_ncols=True, total=len(val_loader))
-        # for idx, (input, target) in enumerate(pbar):
         for idx, (input, target) in enumerate(val_loader):
             input = input.cuda()
             target = target.cuda(non_blocking=True)
@@ -59,7 +56,6 @@ def validate(val_loader, model, cfg=None):
 
             tmp_str = ''
             for k, v in acc_meter.items(): tmp_str = tmp_str + f"{k}:{v.value:.2f} "
-            # pbar.set_description(tmp_str)
 
         print(f"{idx+1}/{len(val_loader)}--" + tmp_str)
 

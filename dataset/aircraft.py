@@ -7,7 +7,6 @@ import os
 import numpy as np
 
 
-import pdb
 
 
 def make_dataset(dir, image_ids, targets):

@@ -5,7 +5,6 @@ import logging
 import yaml
 from easydict import EasyDict as edict
 
-import pdb
 
 parser = argparse.ArgumentParser(description='PyTorch ImageNet Training')
 
@@ -36,10 +35,6 @@ def _merge_a_into_b(a, b):
 
     for k, v in a.items():
         # a must specify keys that are in b
-        #if k not in b:
-        #    raise KeyError('{} is not a valid config key'.format(k))
-
-        # recursively merge dicts
         if type(v) is edict:
             try:
                 _merge_a_into_b(a[k], b[k])
@@ -58,9 +53,6 @@ def print_options(opt):
         message += '----------------- Options ---------------\n'
         for k, v in sorted(vars(opt).items()):
             comment = ''
-            # default = self.parser.get_default(k)
-            # if v != default:
-            #     comment = '\t[default: %s]' % str(default)
             message += '{:>25}: {:<30}{}\n'.format(str(k), str(v), comment)
         message += '----------------- End -------------------'
         print(message)
@@ -77,9 +69,6 @@ def cfg_from_file(cfg):
 
     _merge_a_into_b(yaml_cfg, cfg)
 
-    # logging.info("Config:\n"+pprint.pformat(cfg))
-    # print("Config:\n"+pprint.pformat(cfg))
-    # print_options(cfg)
     return cfg
 
 
@@ -100,11 +89,9 @@ parser.add_argument('-b', '--batch_size', default=32, type=int, metavar='N', hel
 parser.add_argument('--gpu_ids', type=str, default='0,1', help='gpu ids: e.g. 0  0,1,2, 0,2. use -1 for CPU')
 parser.add_argument('--model', default=None, type=str, metavar='PATH', help='path to model (default: none)')
 parser.add_argument('--random', action='store_true', help='whether use random novel weights')
-parser.add_argument('--aug', action='store_true', help='whether use data augmentation during training')
 parser.add_argument('-e', '--evaluate', dest='evaluate', action='store_true', help='evaluate model on validation set')
 parser.add_argument('--seed', default=0, type=int, help='seeding for all random operation')
 parser.add_argument('--config', default='configs/cub_224_baseline.yml', type=str, help='config files')
-parser.add_argument('--box_thred', default=0.2, type=float, help='threshod to crop a bounding box')
 
 # train
 parser.add_argument('--momentum', default=0.9, type=float, metavar='M', help='momentum')
@@ -116,8 +103,6 @@ parser.add_argument('--loss_weights', default='[1, 0, 0, 0]', type=str, help='lo
 parser.add_argument('--pretrained', default=True, type=bool, help='loss weights')
 
 # test
-parser.add_argument('--test-novel-only', action='store_true', help='whether only test on novel classes')
-parser.add_argument('--random_sample', type=bool, default=False, help='whether random sample novel class')
 parser.add_argument('--trials', type=int, default=1, help='whether random sample novel class')
 parser.add_argument('--num_sample', default=1, type=int, metavar='N', help='number of novel sample (default: 1)')
 parser.add_argument('--tta', default=None, type=str, metavar='N', help='number of novel sample (default: 1)')

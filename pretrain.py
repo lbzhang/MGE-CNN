@@ -6,15 +6,10 @@ import torch.nn.functional as F
 import torch.backends.cudnn as cudnn
 
 import utils
-# from models import LocalCamNet as Net
-# from models import BaseNet as Net
 from models import get_model
 from trainer import *
 from dataset import get_loader
 
-# count_parameters
-
-import pdb
 
 def main(opt):
     # model
@@ -23,10 +18,6 @@ def main(opt):
     model = get_model(opt)
     model = nn.DataParallel(model).cuda()
 
-    # num_params = utils.count_parameters(model)
-    # print(num_params)
-
-    # pdb.set_trace()
 
 
     if opt.model: utils.load_checkpoint(model, opt.model)
@@ -38,7 +29,6 @@ def main(opt):
     # optimizer
     extractor_params = model.module.get_params(prefix='extractor')
     classifier_params = model.module.get_params(prefix='classifier')
-    # {'params': extractor_params, 'lr': opt.lr},
     lr_cls = opt.lr
     lr_extractor = 0.1 * lr_cls
     if 'lr_rate' in opt.keys():
@@ -49,7 +39,6 @@ def main(opt):
               ]
     optimizer = torch.optim.SGD(params, lr=opt.lr, momentum=opt.momentum, weight_decay=opt.weight_decay)
     scheduler = torch.optim.lr_scheduler.StepLR(optimizer, step_size=30, gamma=0.1)
-    # scheduler = torch.optim.lr_scheduler.MultiStepLR(optimizer, milestones=[10, 15, 20], gamma=0.1, last_epoch=-1)
 
     # criterion
     entropy_loss = nn.CrossEntropyLoss().cuda()

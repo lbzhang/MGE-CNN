@@ -10,7 +10,6 @@ import cv2
 import time
 
 from utils import RunningMean, update_meter, accuracy
-import pdb
 
 
 def exclude_gt(logit, target, is_log=False):
@@ -32,8 +31,6 @@ def kl_loss(x_pred, x_gt, target):
 
 # -----------train----------------------------------
 def train(train_loader, model, criterion, optimizer, args):
-    # switch to evaluate mode
-    # model = model_dict['pretrain']
     model = model.train()
 
     loss_keys = args.loss_keys
@@ -42,8 +39,6 @@ def train(train_loader, model, criterion, optimizer, args):
     acc_meter = {p: RunningMean() for p in acc_keys}
 
     time_start = time.time()
-    # pbar = tqdm(train_loader, dynamic_ncols=True, total=len(train_loader))
-    # for idx, (input, target) in enumerate(pbar):
     for idx, (input, target) in enumerate(train_loader):
 
         input = input.cuda()
@@ -54,7 +49,6 @@ def train(train_loader, model, criterion, optimizer, args):
         logits = output_dict['logits']
 
         # -----------------
-        # loss_weights = eval(args.loss_weights)
         loss_values = [criterion['entropy'](logit, target) for k, logit in enumerate(logits)]
 
         if len(loss_keys) > 1:
@@ -76,7 +70,6 @@ def train(train_loader, model, criterion, optimizer, args):
         for k, v in loss_meter.items(): tmp_str = tmp_str + f"{k}:{v.value:.4f} "
         tmp_str = tmp_str + "\n"
         for k, v in acc_meter.items(): tmp_str = tmp_str + f"{k}:{v.value:.1f} "
-        # pbar.set_description(tmp_str)
 
         optimizer.zero_grad()
         loss_values[-1].backward()
