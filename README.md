@@ -2,6 +2,17 @@
 
 Pytorch implementation of "ICCV2019-Learning a Mixture of Granularity-Specific Experts for Fine-Grained Categorization"
 
+## Requirement
+   - python 3.6
+   - tqdm
+   - yaml
+   - easydict
+   - pytorch 1.1
+   - pretrainedmodels
+   - PIL
+
+ln -s (Folder of CUB data) CUB-200-2011
+
 ## Train
 python pretrain.py --config configs/cub_resnet50.yml 
 
