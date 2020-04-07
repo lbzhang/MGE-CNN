@@ -25,6 +25,18 @@ python test.py --config configs/cub_resnet50.yml --model epoch_100.pth
 Accuracy: 88.78 %
 
 
+If you use this code, please cite our paper: 
+
+@inproceedings{zhang2019learning,
+  title={Learning a Mixture of Granularity-Specific Experts for Fine-Grained Categorization},
+  author={Zhang, Lianbo and Huang, Shaoli and Liu, Wei and Tao, Dacheng},
+  booktitle={Proceedings of the IEEE International Conference on Computer Vision},
+  pages={8331--8340},
+  year={2019}
+}
+
+
+
 
 
 
