@@ -37,6 +37,9 @@ Pretrained model: [link](https://drive.google.com/file/d/1JS8tI0gnBIW-tT97DjL1Rc
 
 Accuracy: 88.78 %
 
+## Reference
+- Grad-CAM from [jacobgil/pytorch-grad-cam](https://github.com/jacobgil/pytorch-grad-cam)
+
 
 
 
