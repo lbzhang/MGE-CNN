@@ -14,7 +14,7 @@ Pytorch implementation of "ICCV2019-Learning a Mixture of Granularity-Specific E
 
 
 ## Train
-ln -s <Folder of CUB data> CUB-200-2011 
+ln -s "Folder of CUB data" CUB-200-2011 \
 python pretrain.py --config configs/cub_resnet50.yml 
 
 ## Inference
