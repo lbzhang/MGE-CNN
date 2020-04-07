@@ -4,7 +4,7 @@ Pytorch implementation of "ICCV2019-Learning a Mixture of Granularity-Specific E
 
 If you use this code, please cite our paper: 
 
-'''
+```
 @inproceedings{zhang2019learning,
   title={Learning a Mixture of Granularity-Specific Experts for Fine-Grained Categorization},
   author={Zhang, Lianbo and Huang, Shaoli and Liu, Wei and Tao, Dacheng},
@@ -12,7 +12,7 @@ If you use this code, please cite our paper:
   pages={8331--8340},
   year={2019}
 }
-'''
+```
 
 ## Requirement
    - python 3.6
