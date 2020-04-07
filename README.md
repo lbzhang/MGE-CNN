@@ -1,22 +1,18 @@
-# FGVC-Cam
-# branch: mask\_1\_patch\_2
+# MGE-CNN
 
-## requirement
-- python 3.6.5
-- pytorch 1.0 (use pytorch installed on Artemis)
-  - module load cuda/9.1.85 
-  - module load python/3.6.5
-  - module load lapack/3.8.0
+Pytorch implementation of "ICCV2019-Learning a Mixture of Granularity-Specific Experts for Fine-Grained Categorization"
 
-## 1-gpu
-python pretrain.py --checkpoint results/mask_1_patch_2 --data CUB-200-2011 --loss_weights "[1,1,1,1,1]" --lr 0.001 --batch_size 8 --epochs 100 --gpu_ids 0,1 
+## Train
+python pretrain.py --config configs/cub_resnet50.yml 
 
-python test.py --model results/mask_1_patch_2/checkpoint.pth  --data CUB-200-2011 --batch_size 4 --gpu_ids 0
+## Inference
+Pretrained model: [link](https://drive.google.com/file/d/1JS8tI0gnBIW-tT97DjL1Rc2kJmorrhM2/view?usp=sharing)
 
-## 2-gpus
-python pretrain.py --checkpoint results/mask_1_patch_2 --data CUB-200-2011 --loss_weights "[1,1,1,1,1]" --lr 0.001 --batch_size 12 --epochs 100 --gpu_ids 0,1 
+python test.py --config configs/cub_resnet50.yml --model epoch_100.pth
 
-python test.py --model results/mask_1_patch_2/checkpoint.pth  --data CUB-200-2011 --batch_size 6 --gpu_ids 0,1
+Accuracy: 88.78 %
+
+
 
 
 
