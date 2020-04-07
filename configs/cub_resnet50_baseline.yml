@@ -1,0 +1,14 @@
+data: CUB-200-2011
+arch: resnet50
+checkpoint: results/cub/resnet50_baseline/
+
+img_size: 512
+crop_size: 448
+epochs: 100
+num_classes: 200
+batch_size: 16
+lr: 0.01
+
+loss_keys: ['loss']
+acc_keys: ['acc']
+test_acc_keys: ['acc']
