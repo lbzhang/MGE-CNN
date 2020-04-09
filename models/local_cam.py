@@ -214,8 +214,6 @@ class LocalCamNet(nn.Module):
                        logits_box_2, logits_max_2, logits_cat_2,
                        logits_gate]
 
-        if not self.training:
-            logits_list = logits_list[:-3]
         outputs = {'logits':logits_list, 'pr_gate': pr_gate}
 
         return outputs
